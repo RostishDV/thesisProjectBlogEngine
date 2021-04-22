@@ -5,19 +5,19 @@ import java.util.Date;
 
 @Entity
 @Table(name = "post_votes")
-public class PostVote {
+public class PostVote extends AbstractEntity{
     @Column(name = "user_id", nullable = false)
     private int userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
     @Column(name = "post_id", nullable = false)
     private int post_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Post post;
 
     @Column(nullable = false)

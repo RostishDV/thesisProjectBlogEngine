@@ -5,26 +5,26 @@ import java.util.Date;
 
 @Entity
 @Table(name = "post_comment")
-public class PostComment {
+public class PostComment extends AbstractEntity{
     @Column(name = "parent_id")
     private int parentId;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id", nullable = true, insertable = false, updatable = false)
     private PostComment postComment;
 
     @Column(name = "post_id", nullable = false)
     private int postId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Post post;
 
     @Column(name = "user_id", nullable = false)
     private int userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
     @Column(nullable = false)

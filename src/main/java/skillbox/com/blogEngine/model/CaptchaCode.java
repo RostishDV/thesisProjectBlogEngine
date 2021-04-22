@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "captcha_code")
-public class CaptchaCode {
+public class CaptchaCode extends AbstractEntity{
     @Column(nullable = false)
     private Date time;
 

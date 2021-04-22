@@ -22,7 +22,7 @@ public class Post extends AbstractEntity{
     private int userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User author;
 
     @Column(nullable = false)
@@ -37,9 +37,7 @@ public class Post extends AbstractEntity{
     @Column(nullable = false)
     private int viewCount;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(joinColumns = @JoinColumn(name = "id", referencedColumnName = "rate_id"),
-    inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "posts")
     private List<Tag> tagList;
 
     @OneToMany(mappedBy = "post")
@@ -142,7 +140,5 @@ public class Post extends AbstractEntity{
 
     public void setPostVotes(List<PostVote> postVotes) {
         this.postVotes = postVotes;
-
-
     }
 }

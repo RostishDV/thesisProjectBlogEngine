@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.jdbc.batch_size: 20
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_structured_entries: false
+      hibernate.cache.use_minimal_puts: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/blog_db?serverTimezone=UTC
+    username: root
+    password: testtest
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver

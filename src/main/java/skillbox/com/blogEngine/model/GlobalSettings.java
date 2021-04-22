@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "global_settings")
-public class GlobalSettings {
+public class GlobalSettings extends AbstractEntity{
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private SettingsCode code;
