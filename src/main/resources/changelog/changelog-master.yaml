@@ -1,0 +1,10 @@
+databaseChangeLog:
+  # schema
+  - include:
+      file: changelog/liquibase-outputChangeLog.xml
+#  - include:
+#      file: db/changelog/sqlSchema.sql
+
+  # data
+  - include:
+      file: changelog/data.xml

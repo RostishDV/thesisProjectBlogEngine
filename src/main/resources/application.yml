@@ -1,4 +1,7 @@
 spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/changelog/changelog-master.yaml
   jpa:
     show-sql: true
     hibernate:
@@ -11,13 +14,11 @@ spring:
         cache.use_second_level_cache: false
         cache.use_structured_entries: false
         cache.use_minimal_puts: false
-      liquibase:
-        enabled: true #this is optional as enabled by default
-        change-log: classpath:/liquibase-outputChangeLog.xml
+
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/blog_db?serverTimezone=UTC
     username: root
     password: testtest
-    changeLogFile: src/main/resources/liquibase-outputChangeLog.xml
+    changeLogFile: classpath:/changelog/changelog-master.yaml
 
 #    driverClassName: com.mysql.jdbc.Driver

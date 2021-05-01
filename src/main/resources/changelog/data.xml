@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <property name="now" value="sysdate" dbms="oracle"/>
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="now" value="now()" dbms="postgresql"/>
+    <changeSet id="insert data to captcha_code" author="TestUsers">
+        <insert tableName="captcha_code">
+            <column name="code" value="2"/>
+            <column name="secret_code" value="15"/>
+            <column name="time" valueDate="${now}"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to global_settings" author="TestUsers">
+        <insert tableName="global_settings">
+            <column name="code" value="POST_PREMODERATION"/>
+            <column name="name" value="Премодерация постов"/>
+            <column name="value" valueDate="'YES'"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to users" author="TestUsers">
+        <insert tableName="users">
+            <column name="code" value="1"/>
+            <column name="email" value="some@email.com"/>
+            <column name="is_moderator" value="1"/>
+            <column name="name" value="TestName"/>
+            <column name="password" value="strong_password"/>
+            <column name="photo" value="photo"/>
+            <column name="reg_time" valueDate="${now}"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to posts" author="TestUsers">
+        <insert tableName="posts">
+            <column name="is_active" value="1"/>
+            <column name="moderation_status" value="NEW"/>
+            <column name="moderator_id" value="1"/>
+            <column name="time" valueDate="${now}"/>
+            <column name="text" value="Perfect text"/>
+            <column name="title" value="Perfect title"/>
+            <column name="user_id" value="1"/>
+            <column name="view_count" value="0"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="insert data to tags" author="TestUsers">
+        <insert tableName="tags">
+            <column name="name" value="Some tag"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to tag2post" author="TestUsers">
+        <insert tableName="tag2post">
+            <column name="post_id" value="1"/>
+            <column name="tag_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to post_comment" author="TestUsers">
+        <insert tableName="post_comment">
+            <column name="parent_id" value="1"/>
+            <column name="post_id" value="1"/>
+            <column name="text" value="some cool text"/>
+            <column name="time" valueDate="${now}"/>
+            <column name="user_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert data to post_votes" author="TestUsers">
+        <insert tableName="post_votes">
+            <column name="post_id" value="1"/>
+            <column name="time" valueDate="${now}"/>
+            <column name="user_id" value="1"/>
+            <column name="value" value="1"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
